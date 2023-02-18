@@ -8,7 +8,7 @@ function Menu() {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch('http://contest.elecard.ru/frontend_data/catalog.json');
+      // const response = await fetch('http://contest.elecard.ru/frontend_data/catalog.json');
       
       const data = await response.json();
       setMenuItems(data);

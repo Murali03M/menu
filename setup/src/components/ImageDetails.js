@@ -5,19 +5,19 @@ function ImageDetails() {
   const { id } = useParams();
   const [imageData, setImageData] = useState(null);
 
-  useEffect(() => {
-    // fetch(`http://contest.elecard.ru/frontend_data/catalog.json`)
-      .then(response => response.json())
-      .then(data => {
-        const item = data.find(item => item.image == id);
-        setImageData(item);
-      })
-      .catch(error => console.error(error));
-  }, [id]);
+  // useEffect(() => {
+  //   // fetch(`http://contest.elecard.ru/frontend_data/catalog.json`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const item = data.find(item => item.image == id);
+  //       setImageData(item);
+  //     })
+  //     .catch(error => console.error(error));
+  // }, [id]);
 
-  if (!imageData) {
-    return <div>Loading...</div>;
-  }
+  // if (!imageData) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
