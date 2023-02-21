@@ -9,7 +9,7 @@ const Categories = ({filterItems}) => {
        <button className="filter-btn" onClick={()=>filterItems('business')}>Business</button>
        <button className="filter-btn" onClick={()=>filterItems('food')}>Food</button>
        <button className="filter-btn" onClick={()=>filterItems('health')}>Health</button>
-       <button className="filter-btn" onClick={()=>filterItems('places')}>Pleaces</button>
+       <button className="filter-btn" onClick={()=>filterItems('places')}>Places</button>
        <button className="filter-btn" onClick={()=>filterItems('science')}>Science</button>
        <button className="filter-btn" onClick={()=>filterItems('vehicle')}>Vehicle</button>
        <button className="filter-btn" onClick={()=>filterItems('winter')}>winter</button>

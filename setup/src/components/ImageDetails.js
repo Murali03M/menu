@@ -1,31 +1,36 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function ImageDetails() {
-  const { id } = useParams();
-  const [imageData, setImageData] = useState(null);
-
-  // useEffect(() => {
-  //   // fetch(`http://contest.elecard.ru/frontend_data/catalog.json`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const item = data.find(item => item.image == id);
-  //       setImageData(item);
-  //     })
-  //     .catch(error => console.error(error));
-  // }, [id]);
-
-  // if (!imageData) {
-  //   return <div>Loading...</div>;
-  // }
+function ImageDetails({ item, onClose }) {
+  const formatTimestamp = (unixTimestamp) => {
+    const date = new Date(unixTimestamp * 1000);
+    return date.toLocaleString();
+  };
 
   return (
-    <div>
-      <h1>{imageData.category}</h1>
-      <img src={`http://contest.elecard.ru/frontend_data/${imageData.image}`} alt={imageData.id} />
-      <p>{imageData.filesize}</p>
+    <div className="overlay">
+      <div className="modal">
+        <button className="modal-close" onClick={onClose}>
+          &times;
+        </button>
+        <img
+          className="modal-photo"
+          src={`http://contest.elecard.ru/frontend_data/${item.image}`}
+          alt={item.category}
+        />
+        <div className="modal-info">
+          <h3>Category: {item.category}</h3>
+          <p>File size: {item.filesize}</p>
+          <p>Timestamp: {formatTimestamp(item.timestamp)}</p>
+        </div>
+      </div>
     </div>
   );
 }
+
+ImageDetails.propTypes = {
+  item: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default ImageDetails;
