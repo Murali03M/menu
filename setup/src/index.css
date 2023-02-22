@@ -157,16 +157,21 @@ Menu
   width: 100%;
 }
 
-.footer
-{
+
+
+.footer {
   height: 20px;
   background: var(--clr-gold);
   position: fixed;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   width: 100%;
   z-index: -100;
+  text-align: center;
 }
+
 .title {
   text-align: center;
   margin-bottom: 2rem;
