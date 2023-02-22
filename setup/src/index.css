@@ -357,6 +357,45 @@ Menu
   color: #999;
   cursor: not-allowed;
 }
+.section-filter
+{
+  display: flex;
+}
+.sort-options {
+  display: flex;
+  align-items: center;
+  right: 20px;
+  margin-left: 20px;
+  margin-bottom: 65px;
+
+}
+
+.sort-label {
+  margin-right: 10px;
+}
+
+.sort-select {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  transition: border-color 0.2s ease-in-out;
+ 
+}
+
+.sort-select:focus {
+  border-color: #007bff;
+}
+
+.sort-select option {
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
 
 

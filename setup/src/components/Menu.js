@@ -10,6 +10,8 @@ function Menu() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
+  const [sortBy, setSortBy] = useState('timestamp');
+
 
   const fetchImages = async () => {
     try {
@@ -45,6 +47,27 @@ function Menu() {
     return date.toLocaleString();
   };
 
+  const sortItems = useCallback((sortType) => {
+    let sortedItems = [];
+    if (sortType === 'filesize') {
+      sortedItems = filteredItems.sort((a, b) => {
+        return a.filesize - b.filesize;
+      });
+    } else if (sortType === 'image') {
+      sortedItems = filteredItems.sort((a, b) => {
+        const textA = a.image.toUpperCase();
+        const textB = b.image.toUpperCase();
+        return textA < textB ? -1 : textA > textB ? 1 : 0;
+      });
+    } else {
+      sortedItems = filteredItems.sort((a, b) => {
+        return a.timestamp - b.timestamp;
+      });
+    }
+    setFilteredItems([...sortedItems]);
+    setSortBy(sortType);
+  }, [filteredItems]);
+
   // Get current items
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -59,7 +82,19 @@ function Menu() {
         <ImageDetails item={selectedItem} onClose={() => setSelectedItem(null)} />
       ) : (
         <div>
+
+        <div className='section-filter'>
           <Categories filterItems={filterItems} />
+          <div className="sort-options">
+            <label className='sort-label'>Sort By:</label>
+            <select value={sortBy} onChange={(e) => sortItems(e.target.value)} className='sort-select'>
+              <option value="timestamp">Timestamp</option>
+              <option value="filesize">Filesize</option>
+              <option value="image">Image</option>
+            </select>
+          </div>
+          </div>
+
           <div className="section-center">
             {currentItems.map((item) => {
               return (
