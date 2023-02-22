@@ -146,18 +146,17 @@ Menu
 .menu {
   padding: 5rem 0;
 }
-.header
-{
+.header {
   height: 60px;
   padding-top: 15px;
   background: var(--clr-gold);
   position: sticky;
-  display: block;
-  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  z-index: 100;
-
 }
+
 .footer
 {
   height: 20px;
@@ -414,6 +413,9 @@ Menu
   border-radius: 5px;
 }
 
-
-
+.header-heading
+{
+  font-size: 25px;
+  
+}
 
