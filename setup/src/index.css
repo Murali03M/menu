@@ -396,6 +396,23 @@ Menu
   cursor: pointer;
 }
 
+/* cross-button */
+
+.cross-button {
+  position: absolute;
+  margin-left: 220px;
+  font-size: 20px;
+  margin-top: -10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.cross-button:hover
+{
+  background-color: lavender;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 
 

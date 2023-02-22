@@ -1,5 +1,7 @@
+
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { RxCross2 } from 'react-icons/rx';
 import Categories from './Categories';
 import ImageDetails from './ImageDetails';
 import Pagination from './Pagination';
@@ -42,6 +44,11 @@ function Menu() {
     setSelectedItem(item);
   };
 
+  const handleImageRemove = (item) => {
+    const newItems = filteredItems.filter((i) => i.image !== item.image);
+    setFilteredItems(newItems);
+  };
+
   const formatTimestamp = (unixTimestamp) => {
     const date = new Date(unixTimestamp * 1000);
     return date.toLocaleString();
@@ -82,29 +89,44 @@ function Menu() {
         <ImageDetails item={selectedItem} onClose={() => setSelectedItem(null)} />
       ) : (
         <div>
-
-        <div className='section-filter'>
-          <Categories filterItems={filterItems} />
-          <div className="sort-options">
-            <label className='sort-label'>Sort By:</label>
-            <select value={sortBy} onChange={(e) => sortItems(e.target.value)} className='sort-select'>
-              <option value="timestamp">Timestamp</option>
-              <option value="filesize">Filesize</option>
-              <option value="image">Image</option>
-            </select>
+          <div className="section-filter">
+            <Categories filterItems={filterItems} />
+            <div className="sort-options">
+              <label className="sort-label">Sort By:</label>
+              <select
+                value={sortBy}
+                onChange={(e) => sortItems(e.target.value)}
+                className="sort-select"
+              >
+                <option value="timestamp">Timestamp</option>
+                <option value="filesize">Filesize</option>
+                <option value="image">Image</option>
+              </select>
+            </div>
           </div>
-          </div>
-
           <div className="section-center">
             {currentItems.map((item) => {
               return (
-                <div key={item.image} className="menu-item" onClick={() => handleImageClick(item)}>
-                  <div>
-                    <img src={`http://contest.elecard.ru/frontend_data/${item.image}`} className="photo" />
+                <div key={item.image} className="menu-item">
+                    <RxCross2 className="cross-button" onClick={() => handleImageRemove(item)}/>
+                    
+                  <div onClick={() => handleImageClick(item)}>
+                    <img
+                      src={`http://contest.elecard.ru/frontend_data/${item.image}`}
+                      className="photo"
+                    />
                     <div className="item-info">
-                      <h4 className='item-info-category'><label>Category:</label>{item.category}</h4>
-                      <h4 className='item-info-filesize'><label>fileSize:</label>{item.filesize}</h4>
-                      <h4 className='item-info-timestamp'>{formatTimestamp(item.timestamp)}</h4>
+                      <h4 className="item-info-category">
+                        <label>Category:</label>
+                        {item.category}
+                      </h4>
+                      <h4 className="item-info-filesize">
+                        <label>fileSize:</label>
+                        {item.filesize}
+                      </h4>
+                      <h4 className="item-info-timestamp">
+                        {formatTimestamp(item.timestamp)}
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -121,6 +143,7 @@ function Menu() {
       )}
     </div>
   );
-}
-
+          }
+          
 export default Menu;
+
