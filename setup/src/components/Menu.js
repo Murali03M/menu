@@ -1,6 +1,4 @@
-
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { RxCross2 } from 'react-icons/rx';
 import Categories from './Categories';
 import ImageDetails from './ImageDetails';
