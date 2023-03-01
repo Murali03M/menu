@@ -9,8 +9,7 @@ function App() {
     <main>
        <section>
       <Router>
-       
-        <Header />
+         <Header />
         <Routes>
           <Route exact path="/" element={<Menu />} />
         </Routes>
